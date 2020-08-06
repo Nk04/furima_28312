@@ -1,24 +1,64 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
 
-Things you may want to cover:
+| users            | Type       | Options     |
+| ---------------- | ---------- | ------------|
+| nick_name        | string     | null: false |
+| email            | string     | null: false |
+| password         | string     | null: false |
+| family_name      | string     | null: false |
+| first_name       | string     | null: false |
+| family_name_kana | string     | null: false |
+| first_name_kana  | string     | null: false |
+| birthday         | date       | null: false |
 
-* Ruby version
+### Association
+- has_many :item_purchases
+- has_many :items, through: item_purchases
 
-* System dependencies
+## itemsテーブル
 
-* Configuration
+| items               | Type       | Options     |
+| ------------------- | ---------- | ------------|
+| name                | string     | null: false |
+| image               | string     | null: false |
+| comment             | text       | null: false |
+| category_id         | integer    | null: false |
+| status_id           | integer    | null: false |
+| delivery_fee_id     | integer    | null: false |
+| shipping_origin_id  | integer    | null: false |
+| shipping_date_id    | integer    | null: false |
+| price               | string     | null: false |
+| users               | string     | null: false |
 
-* Database creation
+### Association
+- has_one :item_purchases
+- belongs_to :users, through: item_purchases
+- has_one :shipping_addresses
 
-* Database initialization
+## item_purchasesテーブル
 
-* How to run the test suite
+| item_purchases    | Type       | Options                        |
+| ----------------- | ---------- | ------------------------------ |
+| users             | references | null: false, foreign_key: true |
+| items             | references | null: false, foreign_key: true |
 
-* Services (job queues, cache servers, search engines, etc.)
+### Association
+- belongs_to :users
+- belongs_to :items
 
-* Deployment instructions
+## shipping_addressesテーブル
 
-* ...
+| shipping_addresses  | Type       | Options     |
+| ------------------- | ---------- | ----------- |
+| postal_code         | string     | null: false |
+| prefectures_id      | integer    | null: false |
+| city                | string     | null: false |
+| house_number        | string     | null: false |
+| building_name       | string     |             |
+| phone_number        | string     | null: false |
+| items               | references | null: false |
+
+### Association
+- belongs_to :items
