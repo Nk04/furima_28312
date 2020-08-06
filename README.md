@@ -11,7 +11,7 @@
 ### Association
 - has_one profiles
 - has_one shipping_addresses
-- has_one orders
+- has_many orders
 - has_many items
 
 ## profilesテーブル
