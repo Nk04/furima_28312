@@ -65,3 +65,7 @@ gem 'pry-rails'
 gem 'factory_bot_rails'
 
 gem 'faker'
+
+group :production do
+  gem 'rails_12factor'
+end
