@@ -8,11 +8,17 @@ class User < ApplicationRecord
   KANA_REGEX = /\A[ァ-ン]+\z/.freeze
   NAME_REGEX = /\A[ぁ-んァ-ン一-龥]+\z/.freeze
 
-  validates :nick_name, presence: true
-  validates :password, presence: true, length: { minimum: 6 }, format: { with: PASSWORD_REGEX }, confirmation: true
-  validates :family_name, presence: true, format: { with: NAME_REGEX }
-  validates :first_name, presence: true, format: { with: NAME_REGEX }
-  validates :family_name_kana, presence: true, format: { with: KANA_REGEX }
-  validates :first_name_kana, presence: true, format: { with: KANA_REGEX }
-  validates :birthday, presence: true
+  with_options presence: true do
+    validates :nick_name
+    validates :birthday
+    validates :password, length: { minimum: 6 }, format: { with: PASSWORD_REGEX }, confirmation: true
+    with_options format: { with: NAME_REGEX } do
+      validates :family_name
+      validates :first_name
+    end
+    with_options format: { with: KANA_REGEX } do
+      validates :family_name_kana
+      validates :first_name_kana
+    end
+  end
 end
