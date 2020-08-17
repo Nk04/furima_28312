@@ -3,7 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise  :database_authenticatable, :registerable,
           :recoverable, :rememberable, :validatable
+  # association
+  has_many :items
 
+  # validation
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
   KANA_REGEX = /\A[ァ-ン]+\z/.freeze
   NAME_REGEX = /\A[ぁ-んァ-ン一-龥]+\z/.freeze
