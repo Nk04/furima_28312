@@ -1,21 +1,16 @@
 class Item < ApplicationRecord
-  #association
+  # association
   belongs_to :user
   has_one_attached :image
 
-  #validation
+  # validation
   with_options presence: true do
     validates :name
     validates :image
     validates :comment
-    validates :category
-    validates :status
-    validates :delivery_fee
-    validates :shipping_origin
-    validates :shipping_date
   end
 
-  validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
+  validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
 
   with_options numericality: { other_than: 1 } do
     validates :category_id
