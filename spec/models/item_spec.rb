@@ -11,16 +11,16 @@ RSpec.describe Item, type: :model do
       expect(@item).to be_valid
     end
 
-    it '商品名が空なら出品できないこと' do
-      @item.name = nil
-      @item.valid?
-      expect(@item.errors.full_messages).to include("Name can't be blank")
-    end
-
     it '画像が空なら出品できないこと' do
       @item.image = nil
       @item.valid?
       expect(@item.errors.full_messages).to include("Image can't be blank")
+    end
+
+    it '商品名が空なら出品できないこと' do
+      @item.name = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Name can't be blank")
     end
 
     it '商品の説明が、空なら出品できないこと' do
@@ -29,10 +29,34 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to include("Comment can't be blank")
     end
 
+    it 'カテゴリーの情報についての情報が、空なら出品できないこと' do
+      @item.category = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include('Category is not a number')
+    end
+
+    it '商品の状態についての情報が、空なら出品できないこと' do
+      @item.status = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include('Status is not a number')
+    end
+
+    it '配送料の負担についての情報が、空なら出品できないこと' do
+      @item.delivery_fee = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include('Delivery fee is not a number')
+    end
+
     it '発送元の地域についての情報が、空なら出品できないこと' do
       @item.shipping_origin = nil
       @item.valid?
       expect(@item.errors.full_messages).to include('Shipping origin is not a number')
+    end
+
+    it '発送までの日数についての情報が、空なら出品できないこと' do
+      @item.shipping_date = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include('Shipping date is not a number')
     end
 
     it '価格についての情報が、空なら出品できないこと' do
