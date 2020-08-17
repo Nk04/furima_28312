@@ -1,16 +1,12 @@
 class Item < ApplicationRecord
   #association
-  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :user
-  belongs_to_active_hash :category
-  belongs_to_active_hash :status
-  belongs_to_active_hash :delivery_fee
-  belongs_to_active_hash :shipping_origin
-  belongs_to_active_hash :shipping_date
+  has_one_attached :image
 
   #validation
   with_options presence: true do
     validates :name
+    validates :image
     validates :comment
     validates :category
     validates :status
@@ -28,4 +24,11 @@ class Item < ApplicationRecord
     validates :shipping_origin_id
     validates :shipping_date_id
   end
+
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :category
+  belongs_to_active_hash :status
+  belongs_to_active_hash :delivery_fee
+  belongs_to_active_hash :shipping_origin
+  belongs_to_active_hash :shipping_date
 end
