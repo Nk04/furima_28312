@@ -14,8 +14,8 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.save!
     redirect_to root_path
-    rescue StandardError
-      render :new
+  rescue StandardError
+    render :new
   end
 
   def show
@@ -25,17 +25,17 @@ class ItemsController < ApplicationController
   end
 
   def update
-      @item.update!(item_params)
-      redirect_to item_path
-    rescue StandardError
-      render :edit
+    @item.update!(item_params)
+    redirect_to item_path
+  rescue StandardError
+    render :edit
   end
 
   def destroy
-      @item.destroy!
-      redirect_to root_path
-    rescue StandardError
-      render :edit
+    @item.destroy!
+    redirect_to root_path
+  rescue StandardError
+    render :edit
   end
 
   private
