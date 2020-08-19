@@ -12,11 +12,12 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    if @item.save
-      redirect_to root_path
-    else
+    begin
+      @item.save
+    rescue StandardError
       render :new
     end
+    redirect_to root_path
   end
 
   def show
@@ -26,19 +27,21 @@ class ItemsController < ApplicationController
   end
 
   def update
-    if @item.update(item_params)
-      redirect_to item_path
-    else
+    begin
+      @item.update(item_params)
+    rescue StandardError
       render :edit
     end
+    redirect_to item_path
   end
 
   def destroy
-    if @item.destroy
-      redirect_to root_path
-    else
+    begin
+      @item.destroy
+    rescue StandardError
       render :edit
     end
+    redirect_to root_path
   end
 
   private
