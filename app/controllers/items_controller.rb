@@ -12,12 +12,10 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    begin
-      @item.save
+    @item.save!
+    redirect_to root_path
     rescue StandardError
       render :new
-    end
-    redirect_to root_path
   end
 
   def show
@@ -27,21 +25,17 @@ class ItemsController < ApplicationController
   end
 
   def update
-    begin
-      @item.update(item_params)
+      @item.update!(item_params)
+      redirect_to item_path
     rescue StandardError
       render :edit
-    end
-    redirect_to item_path
   end
 
   def destroy
-    begin
-      @item.destroy
+      @item.destroy!
+      redirect_to root_path
     rescue StandardError
       render :edit
-    end
-    redirect_to root_path
   end
 
   private
