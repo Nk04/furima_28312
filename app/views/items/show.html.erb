@@ -31,7 +31,7 @@
     <% end %>
 
     <% unless user_signed_in? && current_user.id == @item.user_id %>
-    <%= link_to '購入画面に進む', shipping_addresses_path, class:"item-red-btn"%>
+    <%= link_to '購入画面に進む', item_shipping_addresses_path(@item), class:"item-red-btn"%>
     <% end %>
 
     <div class="item-explain-box">

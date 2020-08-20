@@ -2,7 +2,7 @@ class Item < ApplicationRecord
   # association
   belongs_to :user
   has_one_attached :image
-  has_one :shipping_addresses
+  has_one :shipping_address
 
 
   # validation
