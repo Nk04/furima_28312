@@ -10,7 +10,7 @@ class ShippingAddressesController < ApplicationController
     @shipping_address.save!
     redirect_to root_path
   rescue StandardError
-    render :index
+    redirect_to item_shipping_addresses_path
   end
 
   private
