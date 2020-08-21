@@ -5,6 +5,7 @@
     <h1 class='transaction-title-text'>
       購入内容の確認
     </h1>
+    <!--
     <%# 購入内容の表示 %>
     <div class='buy-item-info'>
       <%= image_tag @item.image.variant(resize:'500x500'), class: 'buy-item-img' %>
@@ -19,6 +20,7 @@
       </div>
     </div>
     <%# /購入内容の表示 %>
+    
 
     <%# 支払額の表示 %>
     <div class='item-payment'>
@@ -30,8 +32,8 @@
       </p>
     </div>
     <%# /支払額の表示 %>
-
-    <%= form_with id: 'charge-form', model:@shipping_address, url: item_shipping_addresses_path, class: 'transaction-form-wrap',local: true do |f| %>
+-->
+    <%= form_with id: 'charge-form', model: @shipping_address, url: item_shipping_addresses_path, class: 'transaction-form-wrap',local: true do |f| %>
     <%# カード情報の入力 %>
     <!--
     <div class='credit-card-form'>

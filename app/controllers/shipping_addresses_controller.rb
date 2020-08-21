@@ -1,5 +1,5 @@
 class ShippingAddressesController < ApplicationController
-  before_action :set_item
+  before_action :set_item, only: [:index]
 
   def index
     @shipping_address = ShippingAddress.new
@@ -10,6 +10,7 @@ class ShippingAddressesController < ApplicationController
     @shipping_address.save!
     redirect_to root_path
   rescue StandardError
+    binding.pry
     render :index
   end
 
@@ -17,7 +18,7 @@ class ShippingAddressesController < ApplicationController
 
   def shipping_address_params
     params.require(:shipping_address).permit(
-      :postal_code, :prefectures_id, :city, :house_number, :building_name, :phone_number, :item_id
+      :postal_code, :prefectures_id, :city, :house_number, :building_name, :phone_number
     ).merge(item_id: params[:item_id])
   end
 
