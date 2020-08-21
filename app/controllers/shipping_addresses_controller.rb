@@ -10,7 +10,6 @@ class ShippingAddressesController < ApplicationController
     @shipping_address.save!
     redirect_to root_path
   rescue StandardError
-    binding.pry
     render :index
   end
 
