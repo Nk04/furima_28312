@@ -8,6 +8,7 @@ class ShippingAddress < ApplicationRecord
     validates :city
     validates :house_number
     validates :phone_number, length: { maximum: 11 }
+    validates :token
   end
 
   with_options numericality: { other_than: 1 } do
