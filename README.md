@@ -14,7 +14,7 @@
 
 ### Association
 - has_many :item_purchases
-- has_many :items, through: item_purchases
+- has_many :items
 
 ## itemsテーブル
 
@@ -29,19 +29,19 @@
 | shipping_origin_id  | integer    | null: false                    |
 | shipping_date_id    | integer    | null: false                    |
 | price               | string     | null: false                    |
-| users               | references | null: false, foreign_key: true |
+| user               | references | null: false, foreign_key: true |
 
 ### Association
 - has_one :item_purchase
-- belongs_to :user, through: item_purchases
+- belongs_to :user
 - has_one :shipping_address
 
 ## item_purchasesテーブル
 
 | item_purchases    | Type       | Options                        |
 | ----------------- | ---------- | ------------------------------ |
-| users             | references | null: false, foreign_key: true |
-| items             | references | null: false, foreign_key: true |
+| user              | references | null: false, foreign_key: true |
+| item              | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -57,7 +57,7 @@
 | house_number        | string     | null: false                    |
 | building_name       | string     |                                |
 | phone_number        | string     | null: false                    |
-| items               | references | null: false, foreign_key: true |
+| item                | references | null: false, foreign_key: true |
 
 
 ### Association
