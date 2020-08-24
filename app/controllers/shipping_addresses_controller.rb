@@ -18,7 +18,7 @@ class ShippingAddressesController < ApplicationController
 
   def shipping_address_params
     params.require(:shipping_address).permit(
-      :postal_code, :prefectures_id, :city, :house_number, :building_name, :phone_number, :token
+      :postal_code, :prefectures_id, :city, :house_number, :building_name, :phone_number
     ).merge(item_id: params[:item_id])
   end
 
