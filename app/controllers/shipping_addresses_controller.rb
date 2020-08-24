@@ -30,7 +30,7 @@ class ShippingAddressesController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
       card: card_params[:token],
@@ -47,8 +47,6 @@ class ShippingAddressesController < ApplicationController
   end
 
   def not_current_user_and_souldout_item
-    if @item.user_id == current_user.id || @item.item_purchase != nil
-      redirect_to root_path
-    end
+    redirect_to root_path if @item.user_id == current_user.id || !@item.item_purchase.nil?
   end
 end

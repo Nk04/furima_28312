@@ -19,7 +19,7 @@ RSpec.describe ShippingAddress, type: :model do
     it '都道府県が空では購入できない事' do
       @shipping_address.prefectures_id = nil
       @shipping_address.valid?
-      expect(@shipping_address.errors.full_messages).to include("Prefectures is not a number")
+      expect(@shipping_address.errors.full_messages).to include('Prefectures is not a number')
     end
 
     it '市区町村が空では購入できないこと' do
@@ -41,15 +41,15 @@ RSpec.describe ShippingAddress, type: :model do
     end
 
     it '郵便番号にはハイフンが必要であること' do
-      @shipping_address.postal_code = 0001111
+      @shipping_address.postal_code = 0o001111
       @shipping_address.valid?
-      expect(@shipping_address.errors.full_messages).to include("Postal code is invalid")
+      expect(@shipping_address.errors.full_messages).to include('Postal code is invalid')
     end
 
     it '電話番号は11桁までであること' do
-      @shipping_address.phone_number = 123456789012
+      @shipping_address.phone_number = 123_456_789_012
       @shipping_address.valid?
-      expect(@shipping_address.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
+      expect(@shipping_address.errors.full_messages).to include('Phone number is too long (maximum is 11 characters)')
     end
   end
 end
