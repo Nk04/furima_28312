@@ -2,7 +2,7 @@ class ShippingAddressesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item
   before_action :set_item_purchase
-  before_action :not_current_user
+  before_action :not_current_user_and_sould_item
 
   def index
     @shipping_address = ShippingAddress.new
@@ -46,8 +46,8 @@ class ShippingAddressesController < ApplicationController
     @item_purchase = ItemPurchase.new(item_id: params[:item_id], user_id: current_user.id)
   end
 
-  def not_current_user
-    if @item.user_id == current_user.id
+  def not_current_user_and_sould_item
+    if @item.user_id == current_user.id || @item.item_purchase != nil
       redirect_to root_path
     end
   end
