@@ -7,7 +7,8 @@ class ShippingAddressesController < ApplicationController
 
   def create
     @shipping_address = ShippingAddress.new(shipping_address_params)
-    @shipping_address.save!
+    item_purchase = ItemPurchase.new(item_id: params[:item_id], user_id: current_user.id)
+    (@shipping_address && item_purchase).save!
     pay_item
     redirect_to root_path
   rescue StandardError
